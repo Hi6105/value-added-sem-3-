@@ -1,0 +1,74 @@
+1. count of sandwich's
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+int t,n,k,cnt,cnt1;
+cin>>t;
+while(t--){
+cnt1=0;
+cin>>n>>k;
+cnt=n;
+while(n!=0){
+if(n%k==0){
+cnt+=n/k;
+n/=k;
+}
+else{
+cnt1+=n%k;
+n-=n%k;
+cnt+=n/k;
+n/=k;
+}
+if(n==0&&cnt1>=k)
+{
+n=cnt1;
+cnt1=0;
+}
+}
+cout<<cnt<<endl;
+}
+return 0;
+}
+
+2.instagram problem
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+
+int l,n,w,h;
+scanf("%d%d",&l,&n);
+while(n--){
+    scanf("%d%d",&w,&h);
+    if(w==l&&h==l)
+        printf("ACCEPTED\n");
+    else if(w<l||h<l)
+        printf("UPLOAD ANOTHER\n");
+    else
+        printf("CROP IT\n");
+}
+return 0;
+}
+
+3.Tower of Hanoi
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+void TOH(int n,char A,char B,char C){
+if(n==0)
+return;
+TOH(n-1,A,C,B);
+printf("Moving ring %d from %c to %c\n\n",n,A,C);
+TOH(n-1,B,A,C);
+}
+int main() {
+
+int n;
+scanf("%d",&n);
+TOH(n,'A','B','C');
+return 0;
+}
