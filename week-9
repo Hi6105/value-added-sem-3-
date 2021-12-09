@@ -1,0 +1,112 @@
+1. Harry Potter Vs Lord Voldemort - Advanced
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int isPrime(int a){
+    int i=a/2;
+    while(i>1){
+        if(a%i==0){
+            return 0;
+        }
+        i--;
+    }
+    return 1;
+}
+int main() {
+int t,n,cnt,a;
+    cin>>t;
+    while(t--){
+        a=2;
+        cnt=0;
+        cin>>n;
+        while((a<=n)){
+            if(isPrime(a)&&isPrime(2*a+1))
+                cnt+=a;
+            a++;
+        }
+        cout<<cnt<<endl;
+    }
+    return 0;
+}
+
+
+2. 2 players Problem
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int isPrime(int a){
+    int i=a/2;
+    while(i>1){
+        if(a%i==0){
+            return i;
+        }
+        i--;
+    }
+    return 0;
+}
+int main() {
+  int t,n,temp;
+    char win;
+    cin>>t;
+    while(t--){
+        win='B';
+        cin>>n;
+        int A[n];
+        for(int i=0;i<n;i++){
+            cin>>A[i];
+        }
+        for(int i=0;i<n;i++){
+            temp=isPrime(A[i]);
+            if(temp){
+                A[i]=temp;
+                i=-1;
+                if(win=='A')
+                    win='B';
+                else
+                    win='A';
+            }
+        }
+        cout<<win<<endl;
+    }
+    return 0;
+}
+
+
+3.Rotate Array 1
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+int t,r_v,n;
+    cin>>t;
+    while(t--){
+        cin>>r_v>>n;
+        int A[n];
+        for(int i=0;i<n;i++){
+            cin>>A[i];
+        }
+        for(int i=r_v;i<n;i++){
+            cout<<A[i]<<" ";
+        }
+        for(int i=0;i<r_v;i++)
+            cout<<A[i]<<" ";
+        cout<<endl;
+    }
+    return 0;
+}
