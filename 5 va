@@ -1,44 +1,45 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
-void solve(string s,int cnt,int a){
-    int b=0,temp=cnt; 
-    bool flag=false;
-    for(int i=0;i<a&&temp;i++){
-        if(s[i]!=' ')
-            b++;
-        else
-            temp--;
-    }
-    b=a-b-(cnt-1);
-    for(int i=0;i<a;i++){
-        if(s[i]==' '){
-            cout<<" ";
-            if(!flag){
-                flag=true;
-                for(int o=0;o<b/(cnt-1)+b%(cnt-1);o++)
-                    cout<<" ";
-            }else{
-                for(int o=0;o<b/(cnt-1);o++)
-                    cout<<" ";
-            }
-        }else
-            cout<<s[i];
-    }
-    cout<<endl;
-}
+// void solve(string s,int cnt,int a){
+//     int b=0,temp=cnt; 
+//     bool flag=false;
+//     for(int i=0;i<a&&temp;i++){
+//         if(s[i]!=' ')
+//             b++;
+//         else
+//             temp--;
+//     }
+//     b=a-b-(cnt-1);
+//     for(int i=0;i<a;i++){
+//         if(s[i]==' '){
+//             cout<<" ";
+//             if(!flag){
+//                 flag=true;
+//                 for(int o=0;o<b/(cnt-1)+b%(cnt-1);o++)
+//                     cout<<" ";
+//             }else{
+//                 for(int o=0;o<b/(cnt-1);o++)
+//                     cout<<" ";
+//             }
+//         }else
+//             cout<<s[i];
+//     }
+//     cout<<endl;
+// }
 int main() {
-    int a,cnt=0,cnt2=0;
+    int a,cnt=0,cnt2=0,cnt3=0;
+    bool flag;
     string s,temp;
     cin>>a;
-    getline(cin,s);
+    getline(cin >> ws,s);
     vector<pair<int,string>> v;
-    for(int i=0;i<s.size();i++){
-        if(s[i]==' '){
+    for(unsigned int i=0;i<s.size();i++){
+        if(s[i]==' '||i==s.size()-1){
+            if(i==s.size()-1){
+                temp.push_back(s[i]);
+            cnt++;
+            }
             v.push_back(make_pair(cnt,temp));
             temp.clear();
             cnt=0;
@@ -47,8 +48,33 @@ int main() {
             cnt++;
         }
     }
-    for(int i=0;i<v.size();i++){
-        
+    cnt=0;
+    temp.clear();
+    for(auto pr: v){
+        if(cnt2+pr.first+1<=a){
+            cnt2+=pr.first+1;
+            cnt++;
+        }else{
+            cnt2--;
+            cnt2=a-cnt2;
+            flag=false;
+            for(int i=0;i<cnt;i++){
+                if(!flag){
+                    flag=true;
+                    temp.append(v[0].second);
+                    if(i<cnt-1){
+                        for(int o=0;o<cnt2/(cnt-1)+cnt2%(cnt-1)+1;o++)
+                    temp.push_back(' ');
+                    }
+                }else{
+                    temp.append(v[0].second);
+                    if(i<cnt-1){
+                        for(int o=0;o<cnt2/(cnt-1)+1;o++)
+                    temp.push_back(' ');
+                    }
+                }
+            }
+        }
     }
     return 0;
 }
